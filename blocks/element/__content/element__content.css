@@ -1,0 +1,6 @@
+.element__content {
+    padding: 25px 7.3%;
+    display: flex;
+    justify-content: space-between;
+    background: #FFFFFF;
+}

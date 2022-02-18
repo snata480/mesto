@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="body">
+    <header class="header">
+        <img src="./images/logo.svg" alt="лого" class="header__logo">
+        <hr class="header__line">
+    </header>
+     <main>
+        <section class="profile">
+            <div class="profile__main">
+                <img src="./images/avatar.jpg" alt="фото" class="profile__avatar">
+                    <div class="profile__info">
+                        <div class="profile__info-row">
+                            <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                            <button class="profile__button-edit"></button>
+                        </div>
+                    <p class="profile__profession">Исследователь океана</p>
+                </div>
+            </div>
+            <button class="profile__button-add"></button>
+        </section>
+        <section class="cards">
+            <ul class="cards__list">
+                <li class="element">
+                    <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Карачаевск</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/elbrus.jpg" alt="Гора" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Гора Эльбрус</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/dombay.jpg" alt="Домбай" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Домбай</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/elbrus.jpg" alt="Эльбрус" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Гора Эльбрус</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/dombay.jpg" alt="Домбай" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Домбай</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+                <li class="element">
+                    <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__foto">
+                    <div class="element__content">
+                        <p class="element__title">Карачаево-Черкесия</p>
+                        <button class="element__like"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <section class="popup">
+        <div class="popup__container">
+            <img src="./images/close-icon.svg" alt="закрыть" class="popup__close-icon">
+            <div class="popup__content">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form">
+                    <input type="text" class="popup__input popup__input-name" value="Жак-Ив Кусто">
+                    <input type="text" class="popup__input popup__input-job" value="Исследователь океана">
+                    <button type="submit" class="popup__button-submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer> 
+<script src="./scripts/index.js"></script>
+</body>
+</html>
