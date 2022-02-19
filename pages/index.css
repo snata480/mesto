@@ -5,7 +5,6 @@
 /*header*/
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__line/header__line.css);
 
 /*profile*/
 @import url(../blocks/profile/profile.css);
@@ -23,9 +22,6 @@
 /*cards*/
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__list/cards__list.css);
-/* @import url(../blocks/cards/__item/cards__item.css);
-@import url(../blocks/cards/__item-image/cards__item-image.css);
-@import url(../blocks/profile/); */
 
 /*element*/
 @import url(../blocks/element/element.css);

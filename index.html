@@ -10,7 +10,6 @@
 <body class="body">
     <header class="header">
         <img src="./images/logo.svg" alt="лого" class="header__logo">
-        <hr class="header__line">
     </header>
      <main>
         <section class="profile">
@@ -19,55 +18,55 @@
                     <div class="profile__info">
                         <div class="profile__info-row">
                             <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-                            <button class="profile__button-edit"></button>
+                            <button class="profile__button-edit" type="button"></button>
                         </div>
                     <p class="profile__profession">Исследователь океана</p>
                 </div>
             </div>
-            <button class="profile__button-add"></button>
+            <button class="profile__button-add" type="button"></button>
         </section>
         <section class="cards">
             <ul class="cards__list">
                 <li class="element">
                     <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Карачаевск</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Карачаевск</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="images/elbrus.jpg" alt="Гора" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Гора Эльбрус</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="images/dombay.jpg" alt="Домбай" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Домбай</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Домбай</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="images/elbrus.jpg" alt="Эльбрус" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Гора Эльбрус</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="images/dombay.jpg" alt="Домбай" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Домбай</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Домбай</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__foto">
                     <div class="element__content">
-                        <p class="element__title">Карачаево-Черкесия</p>
-                        <button class="element__like"></button>
+                        <h2 class="element__title">Карачаево-Черкесия</h2>
+                        <button class="element__like" type="button"></button>
                     </div>
                 </li>
             </ul>
@@ -78,9 +77,9 @@
             <img src="./images/close-icon.svg" alt="закрыть" class="popup__close-icon">
             <div class="popup__content">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form">
-                    <input type="text" class="popup__input popup__input-name" value="Жак-Ив Кусто">
-                    <input type="text" class="popup__input popup__input-job" value="Исследователь океана">
+                <form class="popup__form" name="edit">
+                    <input type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто" name="name">
+                    <input type="text" class="popup__input popup__input_type_job" value="Исследователь океана" name="job">
                     <button type="submit" class="popup__button-submit">Сохранить</button>
                 </form>
             </div>
