@@ -1,10 +1,11 @@
 //попап
 const popup = document.querySelector('.popup');
-const buttonClosePopup = popup.querySelector('.popup__close-icon');
+
 
 
 //попап Edit
 const buttonOpenPopupEdit = document.querySelector('.profile__button-edit');
+const buttonClosePopupEdit = popup.querySelector('.popup__close-icon_type_edit');
 const popupEdit = document.querySelector('.popup_type_edit');
 let form = document.querySelector('.popup__form');
 let nameInput = form.querySelector('.popup__input_type_name');
@@ -14,17 +15,25 @@ let profileName = document.querySelector('.profile__info-name');
 let profileJob = document.querySelector('.profile__profession');
 
 //попап Add
-const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup_type_add');
+const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
+const buttonClosePopupAdd = document.querySelector('.popup__close-icon_type_add');
 
+console.log(buttonOpenPopupAdd);
 
 //открытие попапа
-
-
 function openPopup(popup) {
     popup.classList.add('popup_is-opened');
   
 } 
+
+//закрытие попапа
+function closePopup(popup) {
+    popup.classList.remove('popup_is-opened');
+  
+} 
+
+
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
@@ -33,18 +42,31 @@ buttonOpenPopupEdit.addEventListener('click', function() {
     jobInput.value = profileJob.textContent;
 });
 
-console.log(popupAdd);
+//закрытие попап Edit
+buttonClosePopupEdit.addEventListener('click', function() {
+    closePopup(popupEdit);
+});
+
+console.log(buttonOpenPopupAdd);
 
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', function() {    
     openPopup(popupAdd);
 });
 
-/* buttonOpenPopupAdd.addEventListener('click', openPopup(popupAdd)); */
+console.log(popupAdd);
+//закрытие попап Add
+buttonClosePopupAdd.addEventListener('click', function() {
+    closePopup(popupAdd);
+});
 
-const closePopup = function() {
-    popupEdit.classList.remove('popup_is-opened');
-};
+
+
+
+
+
+
+
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -55,11 +77,11 @@ function formSubmitHandler (evt) {
     profileName.textContent = name;
     profileJob.textContent = job;
 
-    closePopup();
+    closePopup(popupEdit);
 }
 
 
-buttonClosePopup.addEventListener('click', closePopup);
+
 form.addEventListener('submit', formSubmitHandler); 
 
 
