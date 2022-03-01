@@ -25,10 +25,12 @@
 
 /*element*/
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__popup-button/element__popup-button.css);
 @import url(../blocks/element/__foto/element__foto.css);
 @import url(../blocks/element/__content/element__content.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/element__like.css);
+
 
 /*footer*/
 @import url(../blocks/footer/footer.css);
