@@ -7,10 +7,10 @@ const popup = document.querySelector('.popup');
 const buttonOpenPopupEdit = document.querySelector('.profile__button-edit');
 const buttonClosePopupEdit = popup.querySelector('.popup__close-icon_type_edit');
 const popupEdit = document.querySelector('.popup_type_edit');
-let form = document.querySelector('.popup__form');
-let nameInput = form.querySelector('.popup__input_type_name');
-let jobInput = form.querySelector('.popup__input_type_job');
-let buttonSubmit = form.querySelector('.popup__button-submit');
+let formPopupEdit = document.querySelector('.popup__form_type_edit');
+let nameInput = formPopupEdit.querySelector('.popup__input_type_name');
+let jobInput = formPopupEdit.querySelector('.popup__input_type_job');
+let buttonSubmit = formPopupEdit.querySelector('.popup__button-submit');
 let profileName = document.querySelector('.profile__info-name');
 let profileJob = document.querySelector('.profile__profession');
 
@@ -18,6 +18,25 @@ let profileJob = document.querySelector('.profile__profession');
 const popupAdd = document.querySelector('.popup_type_add');
 const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
 const buttonClosePopupAdd = document.querySelector('.popup__close-icon_type_add');
+
+let formPopupAdd = document.querySelector('.popup__form_type_add');
+let newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place');
+let linkInput = formPopupAdd.querySelector('.popup__input_type_link');
+
+
+//попап Image
+
+
+
+/* let nameInput = formPopupEdit.querySelector('.popup__input_type_name');
+let titleInput = formPopupEdit.querySelector('.popup__input_type_job');
+let buttonSubmit = formPopupEdit.querySelector('.popup__button-submit');
+let profileName = document.querySelector('.profile__info-name');
+let profileJob = document.querySelector('.profile__profession'); */
+
+
+
+
 
 console.log(buttonOpenPopupAdd);
 
@@ -82,7 +101,20 @@ function formSubmitHandler (evt) {
 
 
 
-form.addEventListener('submit', formSubmitHandler); 
+formPopupEdit.addEventListener('submit', formSubmitHandler); 
+
+//добавление элементов
+/* const form = document.querySelector('.popup__form_type_add');
+addForm.addEventListener('submit', event => {
+    event.preventDefault();
+    
+    const element = addCard( {
+        name: newPlaceInput.value,
+        link: linkInput.value
+    });
+    addForm.reset();
+}); 
+} */
 
 
 
@@ -124,10 +156,39 @@ function addCard(element) {
     const template = document.querySelector ('.template').content.cloneNode(true);
     // наполняем содержимым
     template.querySelector('.element__title').textContent = element.name;
-    template.querySelector('.element__foto').src = element.link;  
+    template.querySelector('.element__foto').src = element.link;
+    
     // отображаем на странице  
-    cards.append(template);
+    cards.prepend(template);
 
 }
 
 initialCards.forEach(addCard);
+
+
+function formAddSubmitHandler (evt) {
+    evt.preventDefault(); 
+
+    addCard({ 
+        name: newPlaceInput.value, 
+        link: linkInput.value, 
+        /* alt: newPlaceInput.value */ });
+
+    
+        formPopupAdd.reset();
+        closePopup(popupAdd)
+
+        
+    
+    
+    
+}
+formPopupAdd.addEventListener('submit', formAddSubmitHandler); 
+
+
+
+
+
+
+
+
