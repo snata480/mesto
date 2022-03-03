@@ -1,8 +1,6 @@
 //попап
 const popup = document.querySelector('.popup');
 
-
-
 //попап Edit
 const buttonOpenPopupEdit = document.querySelector('.profile__button-edit');
 const buttonClosePopupEdit = popup.querySelector('.popup__close-icon_type_edit');
@@ -18,41 +16,25 @@ let profileJob = document.querySelector('.profile__profession');
 const popupAdd = document.querySelector('.popup_type_add');
 const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
 const buttonClosePopupAdd = document.querySelector('.popup__close-icon_type_add');
-
 let formPopupAdd = document.querySelector('.popup__form_type_add');
 let newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place');
 let linkInput = formPopupAdd.querySelector('.popup__input_type_link');
 
-
 //попап Image
-
-
-
-/* let nameInput = formPopupEdit.querySelector('.popup__input_type_name');
-let titleInput = formPopupEdit.querySelector('.popup__input_type_job');
-let buttonSubmit = formPopupEdit.querySelector('.popup__button-submit');
-let profileName = document.querySelector('.profile__info-name');
-let profileJob = document.querySelector('.profile__profession'); */
-
-
-
-
-
-console.log(buttonOpenPopupAdd);
+const popupImage = document.querySelector('.popup_type_image');
+const popupImagePicture = popupImage.querySelector('.popup__place-image');
+const popupImageTitle = popupImage.querySelector('.popup__place-title');
+const buttonClosePopupImage = popupImage.querySelector('.popup__close-icon_type_image');
 
 //открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_is-opened');
-  
 } 
 
 //закрытие попапа
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
-  
 } 
-
-
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
@@ -66,26 +48,20 @@ buttonClosePopupEdit.addEventListener('click', function() {
     closePopup(popupEdit);
 });
 
-console.log(buttonOpenPopupAdd);
-
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', function() {    
     openPopup(popupAdd);
 });
 
-console.log(popupAdd);
 //закрытие попап Add
 buttonClosePopupAdd.addEventListener('click', function() {
     closePopup(popupAdd);
 });
 
-
-
-
-
-
-
-
+//закрытие попап Image
+buttonClosePopupImage.addEventListener('click', function() {
+    closePopup(popupImage);
+});
 
 function formSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -99,28 +75,7 @@ function formSubmitHandler (evt) {
     closePopup(popupEdit);
 }
 
-
-
 formPopupEdit.addEventListener('submit', formSubmitHandler); 
-
-//добавление элементов
-/* const form = document.querySelector('.popup__form_type_add');
-addForm.addEventListener('submit', event => {
-    event.preventDefault();
-    
-    const element = addCard( {
-        name: newPlaceInput.value,
-        link: linkInput.value
-    });
-    addForm.reset();
-}); 
-} */
-
-
-
-
-
-
 
 const initialCards = [
     {
@@ -158,33 +113,29 @@ function addCard(element) {
     template.querySelector('.element__title').textContent = element.name;
     template.querySelector('.element__foto').src = element.link;
     
-
     // like
     template.querySelector('.element__like').addEventListener('click', function (evt) { 
-        
         evt.target.classList.toggle('element__like_active');
     });
 
     //удаление
     template.querySelector('.element__delete-card').addEventListener('click', function (evt) { 
-        
         const cardDelete = evt.target.closest('.element'); 
         cardDelete.remove(); 
- 
-
     });
 
- 
-    
-
+    // открытие попап Image
+    template.querySelector('.element__foto-button').addEventListener('click', function (evt) { 
+        openPopup(popupImage);
+        popupImagePicture.src = evt.target.src;
+        popupImageTitle.textContent = element.name;
+    });
     
     // отображаем на странице  
     cards.prepend(template);
-
 }
 
 initialCards.forEach(addCard);
-
 
 function formAddSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -192,23 +143,11 @@ function formAddSubmitHandler (evt) {
     addCard({ 
         name: newPlaceInput.value, 
         link: linkInput.value, 
-        /* alt: newPlaceInput.value */ });
+        alt: newPlaceInput.value 
+    });
 
-    
-        formPopupAdd.reset();
-        closePopup(popupAdd)
-
-        
-    
-    
-    
+    formPopupAdd.reset();
+    closePopup(popupAdd)
 }
+
 formPopupAdd.addEventListener('submit', formAddSubmitHandler); 
-
-
-
-
-
-
-
-
