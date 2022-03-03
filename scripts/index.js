@@ -158,6 +158,26 @@ function addCard(element) {
     template.querySelector('.element__title').textContent = element.name;
     template.querySelector('.element__foto').src = element.link;
     
+
+    // like
+    template.querySelector('.element__like').addEventListener('click', function (evt) { 
+        
+        evt.target.classList.toggle('element__like_active');
+    });
+
+    //удаление
+    template.querySelector('.element__delete-card').addEventListener('click', function (evt) { 
+        
+        const cardDelete = evt.target.closest('.element'); 
+        cardDelete.remove(); 
+ 
+
+    });
+
+ 
+    
+
+    
     // отображаем на странице  
     cards.prepend(template);
 
