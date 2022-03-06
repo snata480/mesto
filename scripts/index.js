@@ -65,7 +65,7 @@ function handleEditFormSubmit(evt) {
 function handleAddFormSubmit(evt) {
     evt.preventDefault(); 
 
-    addCard({ 
+    createCard({ 
         name: newPlaceInput.value, 
         link: linkInput.value, 
         alt: newPlaceInput.value 
@@ -77,9 +77,27 @@ function handleAddFormSubmit(evt) {
 
 const template = document.querySelector ('.template');
 
+
+function render() {
+    /*  elements.forEach(addCard); */
+ 
+    initialCards.forEach(function (element) {
+        const newCard = createCard(element)
+        cards.prepend(newCard);
+       });
+       
+ 
+}
+ 
+ render();
+
+
+
+
 //карточки
-function addCard(element) {
+function createCard(element) {
     // клонируем содержимое тега template
+
     const card = template.content.cloneNode(true);
     // наполняем содержимым
     card.querySelector('.element__title').textContent = element.name;
@@ -103,10 +121,11 @@ function addCard(element) {
     });
     
     // отображаем на странице  
-    cards.prepend(card);
+    
+    return card;
 }
 
-initialCards.forEach(addCard);
+
 
 
 
