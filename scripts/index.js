@@ -1,4 +1,4 @@
-
+const template = document.querySelector ('.template');
 const cards = document.querySelector('.cards__list');
 
 //попап
@@ -29,15 +29,6 @@ const popupImagePicture = popupImage.querySelector('.popup__place-image');
 const popupImageTitle = popupImage.querySelector('.popup__place-title');
 const buttonClosePopupImage = popupImage.querySelector('.popup__close-icon_type_image');
 
-
-
-
-
-
-
-
-
-
 //открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_is-opened');
@@ -65,36 +56,27 @@ function handleEditFormSubmit(evt) {
 function handleAddFormSubmit(evt) {
     evt.preventDefault(); 
 
-    createCard({ 
+    const item = createCard({
         name: newPlaceInput.value, 
         link: linkInput.value, 
         alt: newPlaceInput.value 
-    });
+    })
+    cards.prepend(item);
 
     formPopupAdd.reset();
     closePopup(popupAdd)
 }
 
-const template = document.querySelector ('.template');
-
-
-function render() {
-    /*  elements.forEach(addCard); */
- 
-    initialCards.forEach(function (element) {
+function renderCard(item) {
+    item.forEach(function (element) {
         const newCard = createCard(element)
         cards.prepend(newCard);
-       });
-       
- 
+    });
 }
  
- render();
+renderCard(initialCards);
 
-
-
-
-//карточки
+//создание карточки
 function createCard(element) {
     // клонируем содержимое тега template
 
@@ -119,14 +101,9 @@ function createCard(element) {
         popupImagePicture.src = evt.target.src;
         popupImageTitle.textContent = element.name;
     });
-    
-    // отображаем на странице  
-    
+     
     return card;
 }
-
-
-
 
 
 //открытие попап Edit
