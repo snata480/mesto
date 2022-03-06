@@ -75,33 +75,35 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd)
 }
 
+const template = document.querySelector ('.template');
+
 //карточки
 function addCard(element) {
     // клонируем содержимое тега template
-    const template = document.querySelector ('.template').content.cloneNode(true);
+    const card = template.content.cloneNode(true);
     // наполняем содержимым
-    template.querySelector('.element__title').textContent = element.name;
-    template.querySelector('.element__foto').src = element.link;
+    card.querySelector('.element__title').textContent = element.name;
+    card.querySelector('.element__foto').src = element.link;
     
     // like
-    template.querySelector('.element__like').addEventListener('click', function (evt) { 
+    card.querySelector('.element__like').addEventListener('click', function (evt) { 
         evt.target.classList.toggle('element__like_active');
     });
 
     //удаление
-    template.querySelector('.element__delete-card').addEventListener('click', function (evt) { 
+    card.querySelector('.element__delete-card').addEventListener('click', function (evt) { 
         evt.target.closest('.element').remove()
     });
 
     // открытие попап Image
-    template.querySelector('.element__foto-button').addEventListener('click', function (evt) { 
+    card.querySelector('.element__foto-button').addEventListener('click', function (evt) { 
         openPopup(popupImage);
         popupImagePicture.src = evt.target.src;
         popupImageTitle.textContent = element.name;
     });
     
     // отображаем на странице  
-    cards.prepend(template);
+    cards.prepend(card);
 }
 
 initialCards.forEach(addCard);
