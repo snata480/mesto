@@ -42,48 +42,21 @@ function closePopup(popup) {
 //редактирование профиля
 function handleEditFormSubmit(evt) {
     evt.preventDefault(); 
-
-    const name = nameInput.value; 
-    const job = jobInput.value;
     
-    profileName.textContent = name;
-    profileJob.textContent = job;
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
 
     closePopup(popupEdit);
 }
 
-//добавление новой карточки
-function handleAddFormSubmit(evt) {
-    evt.preventDefault(); 
-
-    const item = createCard({
-        name: newPlaceInput.value, 
-        link: linkInput.value, 
-        alt: newPlaceInput.value 
-    })
-    cards.prepend(item);
-
-    formPopupAdd.reset();
-    closePopup(popupAdd)
-}
-
-function renderCard(item) {
-    item.forEach(function (element) {
-        const newCard = createCard(element)
-        cards.prepend(newCard);
-    });
-}
- 
-renderCard(initialCards);
-
 //создание карточки
 function createCard(element) {
     // клонируем содержимое тега template
-
     const card = template.content.cloneNode(true);
     // наполняем содержимым
     card.querySelector('.element__title').textContent = element.name;
     card.querySelector('.element__foto').src = element.link;
+    card.querySelector('.element__foto').alt = element.name;
     
     // like
     card.querySelector('.element__like').addEventListener('click', function (evt) { 
@@ -97,14 +70,32 @@ function createCard(element) {
 
     // открытие попап Image
     card.querySelector('.element__foto-button').addEventListener('click', function (evt) { 
-        openPopup(popupImage);
         popupImagePicture.src = evt.target.src;
         popupImageTitle.textContent = element.name;
+        openPopup(popupImage);
     });
      
     return card;
 }
 
+function renderCard(item) {
+    cards.prepend(createCard(item));
+}
+
+initialCards.forEach((item) => renderCard(item))
+
+//добавление новой карточки
+function handleAddFormSubmit(evt) {
+    evt.preventDefault(); 
+
+    renderCard({
+        name: newPlaceInput.value, 
+        link: linkInput.value
+    })
+    
+    formPopupAdd.reset();
+    closePopup(popupAdd);
+}
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
@@ -135,5 +126,4 @@ buttonClosePopupImage.addEventListener('click', function() {
 
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
-
 formPopupAdd.addEventListener('submit', handleAddFormSubmit); 
