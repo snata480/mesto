@@ -39,6 +39,20 @@ function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
 } 
 
+function closePopupByClickOnOverlay (evt) {
+    const popupOpened = document.querySelector('.popup_is-opened');
+    if (evt.target.classList.contains('popup_is-opened')) {    
+        closePopup(popupOpened);
+    }
+}
+
+function closePopupKeydown (evt) {
+    const popupOpened = document.querySelector('.popup_is-opened');
+    if (evt.key === 'Escape') {
+        closePopup(popupOpened);
+    }
+}
+
 //редактирование профиля
 function handleEditFormSubmit(evt) {
     evt.preventDefault(); 
@@ -97,6 +111,11 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd);
 }
 
+//закрытие по esc
+document.addEventListener('keydown', closePopupKeydown);
+
+
+
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
     nameInput.value = profileName.textContent;
@@ -109,6 +128,8 @@ buttonClosePopupEdit.addEventListener('click', function() {
     closePopup(popupEdit);
 });
 
+popupEdit.addEventListener('click', closePopupByClickOnOverlay);
+
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', function() {    
     openPopup(popupAdd);
@@ -119,10 +140,16 @@ buttonClosePopupAdd.addEventListener('click', function() {
     closePopup(popupAdd);
 });
 
+popupAdd.addEventListener('click', closePopupByClickOnOverlay);
+
+
 //закрытие попап Image
 buttonClosePopupImage.addEventListener('click', function() {
     closePopup(popupImage);
 });
+
+popupImage.addEventListener('click', closePopupByClickOnOverlay);
+
 
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
