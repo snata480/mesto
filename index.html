@@ -43,13 +43,21 @@
               class="popup__input popup__input_type_name"
               value="Жак-Ив Кусто"
               name="name"
+              minlength="2"
+              maxlength="40"
+              id="profile-name"
             />
+            <span class="error" id="profile-name-error"> </span>
             <input
               type="text"
               class="popup__input popup__input_type_job"
               value="Исследователь океана"
               name="job"
+              minlength="2"
+              maxlength="200"
+              id="profile-job"
             />
+            <span class="error" id="profile-job-error"> </span>
             <button type="submit" class="popup__button-submit">
               Сохранить
             </button>
@@ -67,19 +75,25 @@
           <h2 class="popup__title">Новое место</h2>
           <form class="popup__form popup__form_type_add" name="name">
             <input
-              type="link"
+              type="text"
               class="popup__input popup__input_type_new-place"
               placeholder="Название"
               name="name"
               required
+              minlength="2"
+              maxlength="30"
+              id="place-name"
             />
+            <span class="error" id="place-name-error"> </span>
             <input
-              type="text"
+              type="url"
               class="popup__input popup__input_type_link"
               placeholder="Ссылка на картинку"
               name="link"
               required
+              id="place-link"
             />
+            <span class="error" id="place-link-error"> </span>
             <button type="submit" class="popup__button-submit">
               Сохранить
             </button>
@@ -114,5 +128,6 @@
     </template>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

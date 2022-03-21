@@ -11,7 +11,6 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const formPopupEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formPopupEdit.querySelector('.popup__input_type_name');
 const jobInput = formPopupEdit.querySelector('.popup__input_type_job');
-const buttonSubmit = formPopupEdit.querySelector('.popup__button-submit');
 const profileName = document.querySelector('.profile__info-name');
 const profileJob = document.querySelector('.profile__profession');
 
@@ -114,12 +113,11 @@ function handleAddFormSubmit(evt) {
 //закрытие по esc
 document.addEventListener('keydown', closePopupKeydown);
 
-
-
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+    formPopupEdit.reset();
     openPopup(popupEdit);
 });
 
@@ -132,6 +130,7 @@ popupEdit.addEventListener('click', closePopupByClickOnOverlay);
 
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', function() {    
+    formPopupAdd.reset();
     openPopup(popupAdd);
 });
 
@@ -142,14 +141,12 @@ buttonClosePopupAdd.addEventListener('click', function() {
 
 popupAdd.addEventListener('click', closePopupByClickOnOverlay);
 
-
 //закрытие попап Image
 buttonClosePopupImage.addEventListener('click', function() {
     closePopup(popupImage);
 });
 
 popupImage.addEventListener('click', closePopupByClickOnOverlay);
-
 
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
