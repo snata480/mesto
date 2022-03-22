@@ -31,23 +31,25 @@ const buttonClosePopupImage = popupImage.querySelector('.popup__close-icon_type_
 //открытие попапа
 function openPopup(popup) {
     popup.classList.add('popup_is-opened');
+    //закрытие по esc
+    document.addEventListener('keydown', closePopupKeydown);
 } 
 
 //закрытие попапа
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
+    document.removeEventListener('keydown', closePopupKeydown);
 } 
 
 function closePopupByClickOnOverlay (evt) {
-    const popupOpened = document.querySelector('.popup_is-opened');
     if (evt.target.classList.contains('popup_is-opened')) {    
-        closePopup(popupOpened);
+        closePopup(evt.target);
     }
 }
 
 function closePopupKeydown (evt) {
-    const popupOpened = document.querySelector('.popup_is-opened');
     if (evt.key === 'Escape') {
+        const popupOpened = document.querySelector('.popup_is-opened');
         closePopup(popupOpened);
     }
 }
@@ -85,6 +87,7 @@ function createCard(element) {
     card.querySelector('.element__foto-button').addEventListener('click', function (evt) { 
         popupImagePicture.src = evt.target.src;
         popupImageTitle.textContent = element.name;
+        popupImagePicture.alt = element.name;
         openPopup(popupImage);
     });
      
@@ -110,8 +113,7 @@ function handleAddFormSubmit(evt) {
     closePopup(popupAdd);
 }
 
-//закрытие по esc
-document.addEventListener('keydown', closePopupKeydown);
+
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
