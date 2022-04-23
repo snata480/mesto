@@ -1,4 +1,9 @@
 import { openPopup } from './index.js';
+
+const popupImage = document.querySelector('.popup_type_image');
+const popupImagePicture = popupImage.querySelector('.popup__place-image');
+const popupImageTitle = popupImage.querySelector('.popup__place-title');
+
 export class Card {
     constructor(data, templateSelector, openPopupImage) {
         this._template = document.querySelector(templateSelector).content;
@@ -16,10 +21,6 @@ export class Card {
     }
 
     _openPopupImage = () => {
-        const popupImage = document.querySelector('.popup_type_image');
-        const popupImagePicture = popupImage.querySelector('.popup__place-image');
-        const popupImageTitle = popupImage.querySelector('.popup__place-title');
-
         popupImagePicture.src = this._link;
         popupImageTitle.textContent = this._name;
         popupImagePicture.alt = this._name;
@@ -43,9 +44,11 @@ export class Card {
         this._card = this._template.cloneNode(true);
 
         // наполняем содержимым
+        const cardImage = this._card.querySelector('.element__foto');
         this._card.querySelector('.element__title').textContent = this._name;
-        this._card.querySelector('.element__foto').src = this._link;
-        this._card.querySelector('.element__foto').alt = this._name;
+        cardImage.src = this._link;
+        cardImage.alt = this._name;
+        
         
         this._setEventListeners();
          
