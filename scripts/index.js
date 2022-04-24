@@ -69,9 +69,14 @@ function handleEditFormSubmit(evt) {
     closePopup(popupEdit);
 }
 
-function renderCard(item) {
-    const card = new Card(item, template/* , openPopupImage */);
+function createCard(item) {
+    const card = new Card(item, template);
     const cardElement = card.createCard(item)
+    return cardElement
+}
+
+function renderCard(item) {
+    const cardElement = createCard(item);
     cards.prepend(cardElement);
 }
 
