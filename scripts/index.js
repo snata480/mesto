@@ -33,14 +33,12 @@ const newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place')
 const linkInput = formPopupAdd.querySelector('.popup__input_type_link');
 
 const popupImage = document.querySelector('.popup_type_image');
-
-
-
-
 const popupImagePicture = popupImage.querySelector('.popup__place-image');
 const popupImageTitle = popupImage.querySelector('.popup__place-title');
 
-
+//валидация
+const editProfileValidator = new FormValidator(valifationConfig, formPopupEdit);
+const addCardValidator = new FormValidator(valifationConfig, formPopupAdd);
 
 //открытие попапа
 export function openPopup(popup) {
@@ -61,13 +59,6 @@ function handleEscKey (evt) {
         closePopup(popupOpened);
     }
 }
-
-//валидация
-const editProfileValidator = new FormValidator(valifationConfig, formPopupEdit);
-const addCardValidator = new FormValidator(valifationConfig, formPopupAdd);
-
-editProfileValidator.enableValidation(); 
-addCardValidator.enableValidation(); 
 
 //редактирование профиля
 function handleEditFormSubmit(evt) {
@@ -92,17 +83,11 @@ function renderCard(item) {
 
 initialCards.forEach(renderCard);
 
-
 function handleCardClick(name, link) {
     popupImagePicture.src = link;
     popupImageTitle.textContent = name;
     openPopup(popupImage);
 }
-
-
-
-
-
 
 //добавление новой карточки
 function handleAddFormSubmit(evt) {
@@ -112,7 +97,6 @@ function handleAddFormSubmit(evt) {
         name: newPlaceInput.value, 
         link: linkInput.value
     })
-    
     formPopupAdd.reset();
     closePopup(popupAdd);
 }
@@ -121,7 +105,6 @@ function handleAddFormSubmit(evt) {
 buttonOpenPopupEdit.addEventListener('click', function() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-
     openPopup(popupEdit);
 });
 
@@ -129,8 +112,6 @@ buttonOpenPopupEdit.addEventListener('click', function() {
 buttonOpenPopupAdd.addEventListener('click', function() {    
     formPopupAdd.reset();
     addCardValidator.enableValidation();
-    
-
     openPopup(popupAdd);
 });
 
@@ -145,6 +126,8 @@ popups.forEach((popup) => {
     })
 })
 
+editProfileValidator.enableValidation(); 
+addCardValidator.enableValidation(); 
 
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
