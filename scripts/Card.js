@@ -44,10 +44,11 @@ export class Card {
         this._card = this._template.cloneNode(true);
 
         // наполняем содержимым
-        const cardImage = this._card.querySelector('.element__foto');
+        this._cardImage = this._card.querySelector('.element__foto');
         this._card.querySelector('.element__title').textContent = this._name;
-        cardImage.src = this._link;
-        cardImage.alt = this._name;
+        
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
         
         
         this._setEventListeners();

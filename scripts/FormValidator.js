@@ -35,13 +35,13 @@ export class FormValidator {
     }
 
     _setEventListener() {
-        const inputList = this._form.querySelectorAll(this._config.inputSelector);
-        const buttonSubmit = this._form.querySelector(this._config.submitButtonSelector);
+        this._inputList = this._form.querySelectorAll(this._config.inputSelector);
+        this._buttonSubmit = this._form.querySelector(this._config.submitButtonSelector);
         
-        inputList.forEach(input => {
+        this._inputList.forEach(input => {
             input.addEventListener('input', (evt) => {
                 this._checkInputValidity(input);
-                this._setButtonState(buttonSubmit, this._form.checkValidity())
+                this._setButtonState(this._buttonSubmit, this._form.checkValidity())
             })
         })
     }
@@ -51,7 +51,6 @@ export class FormValidator {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
         })
-        const buttonSubmit = this._form.querySelector(this._config.submitButtonSelector);
-        this._setButtonState(buttonSubmit, this._form.checkValidity());
+        this._setButtonState(this._buttonSubmit, this._form.checkValidity());
     };  
 }
