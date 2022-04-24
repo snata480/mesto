@@ -32,6 +32,16 @@ const formPopupAdd = document.querySelector('.popup__form_type_add');
 const newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place');
 const linkInput = formPopupAdd.querySelector('.popup__input_type_link');
 
+const popupImage = document.querySelector('.popup_type_image');
+
+
+
+
+const popupImagePicture = popupImage.querySelector('.popup__place-image');
+const popupImageTitle = popupImage.querySelector('.popup__place-title');
+
+
+
 //открытие попапа
 export function openPopup(popup) {
     popup.classList.add('popup_is-opened');
@@ -70,7 +80,7 @@ function handleEditFormSubmit(evt) {
 }
 
 function createCard(item) {
-    const card = new Card(item, template);
+    const card = new Card(item, template, handleCardClick);
     const cardElement = card.createCard(item)
     return cardElement
 }
@@ -81,6 +91,18 @@ function renderCard(item) {
 }
 
 initialCards.forEach(renderCard);
+
+
+function handleCardClick(name, link) {
+    popupImagePicture.src = link;
+    popupImageTitle.textContent = name;
+    openPopup(popupImage);
+}
+
+
+
+
+
 
 //добавление новой карточки
 function handleAddFormSubmit(evt) {
@@ -122,6 +144,7 @@ popups.forEach((popup) => {
         }
     })
 })
+
 
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
