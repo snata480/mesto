@@ -53,4 +53,13 @@ export class FormValidator {
         })
         this._setButtonState(this._buttonSubmit, this._form.checkValidity());
     };  
+
+    resetErrors() {
+        this._form.reset();
+        this._inputList.forEach((input) => {
+            this._checkInputValidity(input);
+        })
+
+        this._setButtonState(this._buttonSubmit, this._form.checkValidity());
+    }
 }

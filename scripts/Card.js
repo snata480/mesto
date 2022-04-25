@@ -17,7 +17,6 @@ export class Card {
 
     _setEventListeners() {
         // like
-        this._likeButton = this._card.querySelector('.element__like');
         this._likeButton.addEventListener('click', this._likeCard);
             
         //удаление
@@ -32,7 +31,7 @@ export class Card {
     createCard() {
         // клонируем содержимое тега template
         this._card = this._template.cloneNode(true);
-
+        this._likeButton = this._card.querySelector('.element__like');
         // наполняем содержимым
         this._cardImage = this._card.querySelector('.element__foto');
         this._card.querySelector('.element__title').textContent = this._name;
