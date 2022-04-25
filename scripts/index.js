@@ -110,7 +110,6 @@ buttonOpenPopupEdit.addEventListener('click', function() {
 
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', () => {    
-    /* formPopupAdd.reset(); */
     addCardValidator.resetErrors();
     openPopup(popupAdd);
 });
