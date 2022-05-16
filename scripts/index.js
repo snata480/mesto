@@ -1,5 +1,6 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
+import { Section } from './Section.js';
 import { initialCards } from './cards.js';
 
 const valifationConfig = {
@@ -76,21 +77,38 @@ function createCard(item) {
     return cardElement
 }
 
-function renderCard(item) {
+const cardListSection = '.cards__list';
+
+const cardsList = new Section({
+    item: initialCards,
+    renderer: (item) => { 
+        const cardElement = createCard(item);
+        cards.prepend(cardElement);
+      }
+    },
+  cardListSection
+); 
+
+cardsList.renderItems();
+
+
+/* function renderCard(item) {
     const cardElement = createCard(item);
     cards.prepend(cardElement);
-}
+} */
 
-initialCards.forEach(renderCard);
+/* initialCards.forEach(renderCard); */
 
-function handleCardClick(name, link) {
+
+
+/* function handleCardClick(name, link) {
     popupImagePicture.src = link;
     popupImageTitle.textContent = name;
     openPopup(popupImage);
-}
+} */
 
 //добавление новой карточки
-function handleAddFormSubmit(evt) {
+/* function handleAddFormSubmit(evt) {
     evt.preventDefault(); 
 
     renderCard({
@@ -99,7 +117,7 @@ function handleAddFormSubmit(evt) {
     })
     formPopupAdd.reset();
     closePopup(popupAdd);
-}
+} */
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {
@@ -131,3 +149,6 @@ addCardValidator.enableValidation();
 //сохранения данных из попапа
 formPopupEdit.addEventListener('submit', handleEditFormSubmit);
 formPopupAdd.addEventListener('submit', handleAddFormSubmit); 
+
+
+
