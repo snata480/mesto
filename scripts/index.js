@@ -80,7 +80,7 @@ function createCard(item) {
 const cardListSection = '.cards__list';
 
 const cardsList = new Section({
-    item: initialCards,
+    items: initialCards,
     renderer: (item) => { 
         const cardElement = createCard(item);
         cards.prepend(cardElement);
@@ -101,23 +101,23 @@ cardsList.renderItems();
 
 
 
-/* function handleCardClick(name, link) {
+function handleCardClick(name, link) {
     popupImagePicture.src = link;
     popupImageTitle.textContent = name;
     openPopup(popupImage);
-} */
+}
 
 //добавление новой карточки
-/* function handleAddFormSubmit(evt) {
+function handleAddFormSubmit(evt) {
     evt.preventDefault(); 
 
-    renderCard({
+    cardsList.addItem({
         name: newPlaceInput.value, 
         link: linkInput.value
     })
     formPopupAdd.reset();
     closePopup(popupAdd);
-} */
+}
 
 //открытие попап Edit
 buttonOpenPopupEdit.addEventListener('click', function() {

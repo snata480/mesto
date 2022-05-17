@@ -6,16 +6,11 @@ export class Section {
         this._container = document.querySelector(containerSelector);
     }
 
-/*     addItem(element) {
+    addItem(element) {
         this._renderer(element);
-      } */
-    
-  /*     clear() {
-        this.container.innerHTML = '';
-      } */
+      }
     
       renderItems() {
-        /* this.clear(); */
         this._initialArray.forEach(element => {
           this._renderer(element);
         });
