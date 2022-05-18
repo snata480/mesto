@@ -1,8 +1,13 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 import { Section } from './Section.js';
-import { Popup } from './Popup.js';
+import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from './cards.js';
+
+
+
+
 
 const valifationConfig = {
     formSelector: '.popup__form',
@@ -44,7 +49,7 @@ const addCardValidator = new FormValidator(valifationConfig, formPopupAdd);
 
 const popupTypeEdit = new Popup(popupEdit);
 const popupTypeAdd = new Popup(popupAdd);
-const popupTypeImage = new Popup(popupImage, popupImagePicture, popupImageTitle);
+const popupTypeImage = new PopupWithImage(popupImage, popupImagePicture, popupImageTitle);
 
 
 

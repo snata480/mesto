@@ -1,5 +1,5 @@
 //Создайте класс Popup, который отвечает за открытие и закрытие попапа.
-export class Popup{
+export default class Popup{
     constructor(popupSelector) {
         //Принимает в конструктор единственный параметр — селектор попапа.
         this._popup = document.querySelector(popupSelector);
