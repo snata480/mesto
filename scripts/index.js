@@ -1,6 +1,7 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
 import { Section } from './Section.js';
+import { Popup } from './Popup.js';
 import { initialCards } from './cards.js';
 
 const valifationConfig = {
@@ -19,7 +20,7 @@ const popups = document.querySelectorAll('.popup')
 
 //попап Edit
 const buttonOpenPopupEdit = document.querySelector('.profile__button-edit');
-const popupEdit = document.querySelector('.popup_type_edit');
+const popupEdit = '.popup_type_edit';
 const formPopupEdit = document.querySelector('.popup__form_type_edit');
 const nameInput = formPopupEdit.querySelector('.popup__input_type_name');
 const jobInput = formPopupEdit.querySelector('.popup__input_type_job');
@@ -27,26 +28,29 @@ const profileName = document.querySelector('.profile__info-name');
 const profileJob = document.querySelector('.profile__profession');
 
 //попап Add
-const popupAdd = document.querySelector('.popup_type_add');
+const popupAdd = '.popup_type_add';
 const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
 const formPopupAdd = document.querySelector('.popup__form_type_add');
 const newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place');
 const linkInput = formPopupAdd.querySelector('.popup__input_type_link');
 
-const popupImage = document.querySelector('.popup_type_image');
-const popupImagePicture = popupImage.querySelector('.popup__place-image');
-const popupImageTitle = popupImage.querySelector('.popup__place-title');
+const popupImage = '.popup_type_image';
+const popupImagePicture = document.querySelector('.popup__place-image');
+const popupImageTitle = document.querySelector('.popup__place-title');
 
 //валидация
 const editProfileValidator = new FormValidator(valifationConfig, formPopupEdit);
 const addCardValidator = new FormValidator(valifationConfig, formPopupAdd);
 
+const popupTypeEdit = new Popup(popupEdit);
+const popupTypeAdd = new Popup(popupAdd);
+const popupTypeImage = new Popup(popupImage);
 //открытие попапа
-export function openPopup(popup) {
-    popup.classList.add('popup_is-opened');
+//export function openPopup(popup) {
+//    popup.classList.add('popup_is-opened');
     //закрытие по esc
-    document.addEventListener('keydown', handleEscKey);
-} 
+ //   document.addEventListener('keydown', handleEscKey);
+//} 
 
 //закрытие попапа
 function closePopup(popup) {
@@ -104,7 +108,7 @@ cardsList.renderItems();
 function handleCardClick(name, link) {
     popupImagePicture.src = link;
     popupImageTitle.textContent = name;
-    openPopup(popupImage);
+    popupTypeImage.open();
 }
 
 //добавление новой карточки
@@ -123,13 +127,14 @@ function handleAddFormSubmit(evt) {
 buttonOpenPopupEdit.addEventListener('click', function() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    openPopup(popupEdit);
+    popupTypeEdit.open()
 });
 
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', () => {    
     addCardValidator.resetErrors();
-    openPopup(popupAdd);
+    popupTypeAdd.open();
+    
 });
 
 popups.forEach((popup) => {
