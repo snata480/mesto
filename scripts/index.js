@@ -80,18 +80,7 @@ function handleEditFormSubmit(evt) {
     /* closePopup(popupEdit); */
 }
 
-/* function handleCardClick(name, link) {
-    popupImagePicture.src = link;
-    popupImageTitle.textContent = name;
-    popupTypeImage.open();
-}
- */
-
-/*  const placeImage = item.link;
-    const placeTitle = item.name; */
-
-
-    
+   
 
 function createCard(item) {
     const card = new Card({

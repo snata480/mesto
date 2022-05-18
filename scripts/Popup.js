@@ -11,20 +11,26 @@ export default class Popup{
         
         this._popup.classList.add('popup_is-opened');
             //закрытие по esc
-            //document.addEventListener('keydown', handleEscKey);
+        document.addEventListener('keydown', this._handleEscKey);
         
         
     }
 
     close() {
         this._popup.classList.remove('popup_is-opened');
-            //document.removeEventListener('keydown', handleEscKey);
+        document.removeEventListener('keydown', this._handleEscKey);
     }
 
     _handleCloseButton = () => {
         this.close();
-      }
+    }
 
+    _handleEscKey = (evt) => {
+        if (evt.key === 'Escape') {
+            const popupOpened = document.querySelector('.popup_is-opened');
+            this.close();
+        }
+    }
     setEventListeners() {
         this._closeButton.addEventListener('click', this._handleCloseButton);
 
