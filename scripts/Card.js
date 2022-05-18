@@ -1,9 +1,9 @@
 export class Card {
-    constructor(data, templateSelector, handleCardClick) {
+    constructor({item, handleCardClick}, templateSelector) {
         this._template = document.querySelector(templateSelector).content;
-        this._name = data.name;
-        this._link = data.link;
-        this._like = data.like;
+        this._name = item.name;
+        this._link = item.link;
+        this._like = item.like;
         this._handleCardClick = handleCardClick;
     }
 
@@ -23,6 +23,7 @@ export class Card {
         this._card.querySelector('.element__delete-card').addEventListener('click', this._deleteCard);
  
         // открытие попап Image
+
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
           });

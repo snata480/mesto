@@ -35,8 +35,8 @@ const newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place')
 const linkInput = formPopupAdd.querySelector('.popup__input_type_link');
 
 const popupImage = '.popup_type_image';
-const popupImagePicture = document.querySelector('.popup__place-image');
-const popupImageTitle = document.querySelector('.popup__place-title');
+const popupImagePicture = '.popup__place-image';
+const popupImageTitle = '.popup__place-title';
 
 //валидация
 const editProfileValidator = new FormValidator(valifationConfig, formPopupEdit);
@@ -44,7 +44,15 @@ const addCardValidator = new FormValidator(valifationConfig, formPopupAdd);
 
 const popupTypeEdit = new Popup(popupEdit);
 const popupTypeAdd = new Popup(popupAdd);
-const popupTypeImage = new Popup(popupImage);
+const popupTypeImage = new Popup(popupImage, popupImagePicture, popupImageTitle);
+
+
+
+
+const cardListSection = '.cards__list';
+
+
+
 //открытие попапа
 //export function openPopup(popup) {
 //    popup.classList.add('popup_is-opened');
@@ -75,17 +83,38 @@ function handleEditFormSubmit(evt) {
     closePopup(popupEdit);
 }
 
+/* function handleCardClick(name, link) {
+    popupImagePicture.src = link;
+    popupImageTitle.textContent = name;
+    popupTypeImage.open();
+}
+ */
+
+/*  const placeImage = item.link;
+    const placeTitle = item.name; */
+
+
+    
+
 function createCard(item) {
-    const card = new Card(item, template, handleCardClick);
+    const card = new Card({
+            item,
+            handleCardClick: (name, link) => {
+                popupTypeImage.open(name, link);  
+            }
+        }, 
+        template, 
+         
+    );
+        
     const cardElement = card.createCard(item)
     return cardElement
 }
 
-const cardListSection = '.cards__list';
-
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => { 
+
         const cardElement = createCard(item);
         cards.prepend(cardElement);
       }
@@ -94,22 +123,6 @@ const cardsList = new Section({
 ); 
 
 cardsList.renderItems();
-
-
-/* function renderCard(item) {
-    const cardElement = createCard(item);
-    cards.prepend(cardElement);
-} */
-
-/* initialCards.forEach(renderCard); */
-
-
-
-function handleCardClick(name, link) {
-    popupImagePicture.src = link;
-    popupImageTitle.textContent = name;
-    popupTypeImage.open();
-}
 
 //добавление новой карточки
 function handleAddFormSubmit(evt) {
