@@ -56,20 +56,6 @@ const popupTypeImage = new PopupWithImage(popupImage, popupImagePicture, popupIm
 
 const cardListSection = '.cards__list';
 
-
-//закрытие попапа
-/* function closePopup(popup) {
-    popup.classList.remove('popup_is-opened');
-    document.removeEventListener('keydown', handleEscKey);
-}  */
-
-/* function handleEscKey (evt) {
-    if (evt.key === 'Escape') {
-        const popupOpened = document.querySelector('.popup_is-opened');
-        closePopup(popupOpened);
-    }
-} */
-
 //редактирование профиля
 function handleEditFormSubmit(evt) {
     evt.preventDefault(); 

@@ -11,32 +11,39 @@ export default class Popup{
         
         this._popup.classList.add('popup_is-opened');
             //закрытие по esc
-        document.addEventListener('keydown', this._handleEscKey);
+        document.addEventListener('keydown', this._handleEscClose);
         
         
     }
 
     close() {
         this._popup.classList.remove('popup_is-opened');
-        document.removeEventListener('keydown', this._handleEscKey);
+        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     _handleCloseButton = () => {
         this.close();
     }
 
-    _handleEscKey = (evt) => {
+    _handleEscClose = (evt) => {
         if (evt.key === 'Escape') {
-            const popupOpened = document.querySelector('.popup_is-opened');
             this.close();
         }
     }
-    setEventListeners() {
-        this._closeButton.addEventListener('click', this._handleCloseButton);
 
+    _handleOverlayClose = (evt) => {
+        if (evt.target.classList.contains('popup_is-opened')) {
+            this.close();
+        }
     }
 
-//Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
+
+
+    setEventListeners() {
+        this._closeButton.addEventListener('click', this._handleCloseButton);
+        this._popup.addEventListener('click', this._handleOverlayClose);
+    }
+
 //Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа. Модальное окно также закрывается при клике на затемнённую область вокруг формы.
 }
 
