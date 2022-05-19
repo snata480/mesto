@@ -26,7 +26,7 @@ const profileNameSelector = '.profile__info-name';
 const profileJobSelector = '.profile__profession';
 
 //попап Add
-const popupAdd = '.popup_type_add';
+const popupAddSelector = '.popup_type_add';
 const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
 const formPopupAdd = document.querySelector('.popup__form_type_add');
 const newPlaceInput = formPopupAdd.querySelector('.popup__input_type_new-place');
@@ -40,7 +40,7 @@ const editProfileValidator = new FormValidator(validationConfig, formPopupEdit);
 const addCardValidator = new FormValidator(validationConfig, formPopupAdd);
 
 const popupTypeEdit = new Popup(popupEditSelector);
-const popupTypeAdd = new Popup(popupAdd);
+//const popupTypeAdd = new Popup(popupAdd);
 const popupTypeImage = new PopupWithImage(popupImage, popupImagePicture, popupImageTitle);
 
 const cardListSection = '.cards__list';
@@ -97,7 +97,24 @@ const cardsList = new Section({
 cardsList.renderItems();
 
 //добавление новой карточки
-function handleAddFormSubmit(evt) {
+
+const popupAdd = new PopupWithForm(popupAddSelector, {
+    handleFormSubmit: (values) => {
+        
+        cardsList.addItem(values);
+        popupAdd.close();
+
+    
+       // popupEdit.close();
+       // popupTypeEdit.setEventListeners()
+
+    }
+})
+
+
+
+
+/* function handleAddFormSubmit(evt) {
     evt.preventDefault(); 
 
     cardsList.addItem({
@@ -105,9 +122,9 @@ function handleAddFormSubmit(evt) {
         link: linkInput.value
     })
     formPopupAdd.reset();
-    popupTypeAdd.close();
-    popupTypeAdd.setEventListeners() 
-}
+    popupAdd.close();
+    popupAdd.setEventListeners() 
+} */
 
 
 buttonOpenPopupEdit.addEventListener('click', function(){
@@ -127,12 +144,12 @@ buttonOpenPopupEdit.addEventListener('click', function(){
 //открытие попап Add
 buttonOpenPopupAdd.addEventListener('click', () => {    
     addCardValidator.resetErrors();
-    popupTypeAdd.open();
+    popupAdd.open();
     
 });
 
-popupTypeAdd.close();
-    popupTypeAdd.setEventListeners()
+popupAdd.close();
+    popupAdd.setEventListeners()
 
 
 editProfileValidator.enableValidation(); 
@@ -140,7 +157,7 @@ addCardValidator.enableValidation();
 
 //сохранения данных из попапа
 
-formPopupAdd.addEventListener('submit', handleAddFormSubmit); 
+//formPopupAdd.addEventListener('submit', handleAddFormSubmit); 
 
 
 
