@@ -1,8 +1,7 @@
 export class Section {
     constructor({items, renderer} , containerSelector) {
         this._initialArray = items;
-        this._renderer = renderer; // renderer — это функция
-        
+        this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
     }
 
@@ -15,7 +14,4 @@ export class Section {
           this._renderer(element);
         });
       }
-
-
-
 }

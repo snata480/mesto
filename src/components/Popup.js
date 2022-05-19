@@ -1,19 +1,13 @@
-//Создайте класс Popup, который отвечает за открытие и закрытие попапа.
 export default class Popup{
     constructor(popupSelector) {
         //Принимает в конструктор единственный параметр — селектор попапа.
         this._popup = document.querySelector(popupSelector);
         this._closeButton = this._popup.querySelector('.popup__close-icon');
-
     }
     
     open() {
-        
         this._popup.classList.add('popup_is-opened');
-            //закрытие по esc
         document.addEventListener('keydown', this._handleEscClose);
-        
-        
     }
 
     close() {
@@ -37,13 +31,8 @@ export default class Popup{
         }
     }
 
-
-
     setEventListeners() {
         this._closeButton.addEventListener('click', this._handleCloseButton);
         this._popup.addEventListener('click', this._handleOverlayClose);
     }
-
 }
-
- 

@@ -1,4 +1,3 @@
-//переделать
 export default class UserInfo {
     constructor(nameSelector, jobSelector) {
       this._name = document.querySelector(nameSelector);
