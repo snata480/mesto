@@ -6,6 +6,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { initialCards } from '../scripts/cards.js';
 
+import './index.css';
+
 const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
