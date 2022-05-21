@@ -4,42 +4,30 @@ import { Section } from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards } from '../scripts/cards.js';
 
 import './index.css';
 
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button-submit',
-    inactiveButtonClass: 'popup__button-submit_state_invalid',
-    inputErrorClass: 'popup__input_state_invalid',
-}
+import {
+    validationConfig,
+    template,
+    buttonOpenPopupEdit,
+    popupEditSelector,
+    formPopupEdit,
+    profileNameSelector,
+    profileJobSelector,
+    popupAddSelector,
+    buttonOpenPopupAdd,
+    formPopupAdd,
+    popupImage,
+    popupImagePicture,
+    popupImageTitle,
+    cardListSection,
+    initialCards
+  } from '../utils/constants.js';
 
-const template = '#template';
-const cards = document.querySelector('.cards__list');
-
-//попап Edit
-const buttonOpenPopupEdit = document.querySelector('.profile__button-edit');
-const popupEditSelector = '.popup_type_edit';
-const formPopupEdit = document.querySelector('.popup__form_type_edit');
-const profileNameSelector = '.profile__info-name';
-const profileJobSelector = '.profile__profession';
-
-//попап Add
-const popupAddSelector = '.popup_type_add';
-const buttonOpenPopupAdd = document.querySelector('.profile__button-add');
-const formPopupAdd = document.querySelector('.popup__form_type_add');
-const popupImage = '.popup_type_image';
-const popupImagePicture = '.popup__place-image';
-const popupImageTitle = '.popup__place-title';
-
-//валидация
 const editProfileValidator = new FormValidator(validationConfig, formPopupEdit);
 const addCardValidator = new FormValidator(validationConfig, formPopupAdd);
 const popupTypeImage = new PopupWithImage(popupImage, popupImagePicture, popupImageTitle);
-
-const cardListSection = '.cards__list';
 
 const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
 
@@ -69,7 +57,7 @@ const cardsList = new Section({
     items: initialCards,
     renderer: (item) => { 
         const cardElement = createCard(item);
-        cards.prepend(cardElement);
+        cardsList.prependItem(cardElement)
       }
     },
   cardListSection
@@ -90,12 +78,9 @@ buttonOpenPopupEdit.addEventListener('click', function(){
 });
 
 buttonOpenPopupAdd.addEventListener('click', () => {    
-    addCardValidator.resetErrors();
+    addCardValidator.resetValidation();
     popupAdd.open();
 });
-
-popupAdd.close();
-popupEdit.close();
 
 popupAdd.setEventListeners();
 popupEdit.setEventListeners();
