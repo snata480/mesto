@@ -38,7 +38,6 @@ const popupEdit = new PopupWithForm(popupEditSelector, {
     }
 })
 
-popupEdit.setEventListeners();
 
 function createCard(item) {
     const card = new Card({
