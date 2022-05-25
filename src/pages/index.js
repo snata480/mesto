@@ -87,3 +87,14 @@ popupTypeImage.setEventListeners();
 
 editProfileValidator.enableValidation(); 
 addCardValidator.enableValidation();
+
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
+  headers: {
+    authorization: '7e2b9a3c-629b-44c4-8d06-564506f4fe72'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
