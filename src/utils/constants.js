@@ -14,6 +14,7 @@ export const popupEditSelector = '.popup_type_edit';
 export const formPopupEdit = document.querySelector('.popup__form_type_edit');
 export const profileNameSelector = '.profile__info-name';
 export const profileJobSelector = '.profile__profession';
+export const avatarSelector = '.profile__avatar';
 
 //попап Add
 export const popupAddSelector = '.popup_type_add';

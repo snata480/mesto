@@ -1,32 +1,36 @@
 export class Card {
-    constructor({item, handleCardClick}, templateSelector) {
+    constructor({item, handleCardClick, handleDeleteCardClick}, templateSelector) {
         this._template = document.querySelector(templateSelector).content;
         this._name = item.name;
         this._link = item.link;
         this._like = item.like;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteCardClick = handleDeleteCardClick
     }
 
     _likeCard = (evt) => {
         evt.target.classList.toggle('element__like_active');
+        this._likeCounter = document.querySelector('.element__like-counter');
+        this._likeCounter = 0
     }
 
-    _deleteCard = (evt) => {
+    deleteCard = (evt) => {
         evt.target.closest('.element').remove();
     }
-
+    
     _setEventListeners() {
         // like
         this._likeButton.addEventListener('click', this._likeCard);
             
         //удаление
-        this._card.querySelector('.element__delete-card').addEventListener('click', this._deleteCard);
+        const deleteCardButton =  this._card.querySelector('.element__delete-card');
+        deleteCardButton.addEventListener('click', this._handleDeleteCardClick);
+        
  
         // открытие попап Image
-
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
-          });
+        });
     }
 
     createCard() {
