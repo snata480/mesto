@@ -31,13 +31,29 @@ const popupTypeImage = new PopupWithImage(popupImage, popupImagePicture, popupIm
 
 const userInfo = new UserInfo(profileNameSelector, profileJobSelector);
 
-const popupEdit = new PopupWithForm(popupEditSelector, {
+/* const popupEdit = new PopupWithForm(popupEditSelector, {
     handleFormSubmit: (values) => {
         userInfo.setUserInfo(values);
         popupEdit.close();
     }
-})
+}) */
 
+
+const popupEdit = new PopupWithForm(popupEditSelector, {
+  handleFormSubmit: (values) => {
+    api
+      .setUserInfo(values)
+      .then((resolve) => {
+        userInfo.setUserInfo(resolve);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        popupEdit.close();
+      });
+  },
+});
 
 function createCard(item) {
     const card = new Card({
@@ -89,7 +105,7 @@ editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
 
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
+/* fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
   headers: {
     authorization: '7e2b9a3c-629b-44c4-8d06-564506f4fe72'
   }
@@ -98,7 +114,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-41/cards', {
   .then((result) => {
     console.log(result);
   }); 
-
+ */
 
 
 
@@ -230,6 +246,29 @@ const api = new Api({
         authorization: '7e2b9a3c-629b-44c4-8d06-564506f4fe72',
     },
 });
+
+
+
+
+/* const editProfilePopup = new PopupWithForm({
+  handleFormSubmit: (userData) => {
+    api.editUserInfo(userData)
+      .then((resolve) => {
+        addUserInfo.setUserInfo(resolve);
+      })
+      .catch((error) => {
+        console.log(`ERROR: ${error}`);
+      })
+      .finally(() => {
+        editProfilePopup.close();
+      })
+  }
+}, popupEditProfile);
+ */
+
+
+
+
 // //api.getUserInfo();
 // const popupEdit = new PopupWithForm(popupEditSelector, {
 //   handleFormSubmit: (data) => {
@@ -261,3 +300,14 @@ cards.then((data) => {
 
 cardsList.renderItems();
 })
+
+
+
+
+Promise.all([api.getUserInfo()])
+  .then(([data]) => {
+    userInfo.setUserInfo(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });

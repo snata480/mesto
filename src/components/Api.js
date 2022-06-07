@@ -28,7 +28,7 @@ export default class Api {
             .then(this._handleResponse);
     }
 
-/*     setUserInfo(data) {
+    setUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
                 method: "PATCH",
                 headers: this._headers,
@@ -38,7 +38,7 @@ export default class Api {
                 })
             })
             .then(this._handleResponse);
-    } */
+    }
 
 /*     postNewCard(name, link) {
         return fetch(`${this._url}/cards`, {
