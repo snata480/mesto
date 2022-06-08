@@ -34,23 +34,23 @@ export default class Api {
                 headers: this._headers,
                 body: JSON.stringify({
                     name: data.name,
-                    about: data.job
+                    about: data.about
                 })
             })
             .then(this._handleResponse);
     }
 
-/*     postNewCard(name, link) {
+    addNewCard(data) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
             headers: this._headers,
             body: JSON.stringify({
-                name: name,//название создаваемой карточки
-                link: link//ссылка на картинку
+                name: data.name,
+                link: data.link
             })
         })
         .then(this._handleResponse);
-    } */
+    }
 
 
     /*     setAvatar(avatarLink) {
@@ -72,6 +72,16 @@ export default class Api {
                 headers: this._headers,
             })
             .then(this._checkResponse);
+    }
+
+        likeCard(id) {
+        return fetch(`${this._url}/cards/like/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._key,
+            },
+        })
+            .then((res) => this._handlePromise(res))
     }
 
     deleteCard(cardId) {
